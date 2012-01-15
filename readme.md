@@ -76,21 +76,21 @@ More images can be added to the gallery:
  Some fields are marked "not used", but maybe used 
  in a future version.
 
- {
-    "data": {
-        "records": [
-            {
-                "img": {
-                    "src": "http:abc.com/image1.jpg",
- (not used: )       "width": 507,
- (not used: )       "height": 378,
-                    "thumbnail": "http:abc.com/image2.jpg",
- (not used: )       "thumbnail_hq": "http:abc.com/image3.jpg",
-                },
-                "value": "Driving down Highway 1"
-            },
-            ...etc
-
+     {
+         "data": {
+             "records": [
+                 {
+                     "img": {
+                         "src": "http:abc.com/image1.jpg",
+      (not used: )       "width": 507,
+      (not used: )       "height": 378,
+                         "thumbnail": "http:abc.com/image2.jpg",
+      (not used: )       "thumbnail_hq": "http:abc.com/image3.jpg",
+                     },
+                     "value": "Driving down Highway 1"
+                 },
+                 ...etc
+     
 
 
 
