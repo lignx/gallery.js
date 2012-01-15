@@ -42,6 +42,8 @@ gallery.prototype._draw_view = function() {
 
 gallery.prototype._put_html = function() {
   
+  // alternatively this could be defined
+  // with some template system
   var html = ''  
     + '<div class="gllr_nav_box">'
 		+	  '<div class="gllr_nav_prev"></div>'
@@ -118,16 +120,37 @@ gallery.prototype._thumbnail_click = function( elmnt ) {
   
   this._spotlight_img_index = image_index
   this._show_spotlight_img()
+  this._highlight_thumbnail()
+}
+
+
+
+gallery.prototype._highlight_color = '#09CFFF'
+
+
+// highlights the border of the selected thumbnail
+gallery.prototype._highlight_thumbnail = function() {
+  
+  // calculate the thumbnail to highlight
+  var index = this._spotlight_img_index - this.thumbnails_offset
+
+  // remove highlight for all thumbnails
+  var sel_thumbnails = '#' + this.element_id + ' .gllr_thumbnail' 
+  console.log( sel_thumbnails )
+  $( sel_thumbnails ).removeClass( 'highlight_thumbnail' )
+
+  // hightlight the selected
+  var img_id = '#gllr_' + this.element_id + '_thumbnail_' + index
+  $( img_id ).parent().addClass( 'highlight_thumbnail' )
   
 }
+
 
 
 
 gallery.prototype._show_spotlight_img = function( image_index ) {
   
   // display the image
-  console.log( this._images_data[ this._spotlight_img_index ] )
-
   var caption = this._images_data[ this._spotlight_img_index ].value
   var src = this._images_data[ this._spotlight_img_index ].img.src
   
@@ -166,7 +189,8 @@ gallery.prototype.next = function() {
   if( this._spotlight_img_index + 1 == this._images_data.length ) return 
   
   this._spotlight_img_index++
-  this._show_spotlight_img()  
+  this._show_spotlight_img()
+  this._highlight_thumbnail()
 }
 
 
@@ -177,6 +201,7 @@ gallery.prototype.prev = function() {
   
   this._spotlight_img_index--
   this._show_spotlight_img()
+  this._highlight_thumbnail()
 }
 
 
