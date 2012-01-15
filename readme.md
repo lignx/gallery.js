@@ -4,6 +4,8 @@
 A simple javascript image gallery component.
 MIT license.
 
+[View online example](http://nzonbi.github.com/gallery.js/)
+
 ## Features
 
 * Loads the image data in json format with ajax.
