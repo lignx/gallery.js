@@ -8,7 +8,6 @@ var gallery = function( element_id ) {
 
 
 
-gallery.prototype.element_id 
 
 
 
@@ -19,16 +18,18 @@ gallery.prototype.element_id
 // view
 
 
-// id of the gallery top html element 
+// id of the gallery top html element
+// This html element should be a div, an is provided
+// by the user of the component.
 gallery.prototype.element_id 
 
 
 // number of thumbnails displayed.
-// used for pagination.
+// This number is calculated from the available size.
 gallery.prototype.thumbnails_count = 0
 
 
-
+// Creates the slots for thumbnails images in the view.
 // The thumbnails bar shows as many thumbnails as
 // can fit in the available space
 gallery.prototype.add_thumbnail_slots = function( element_id ) {
@@ -47,10 +48,22 @@ gallery.prototype.add_thumbnail_slots = function( element_id ) {
     thumbnails_box.append( with_id )
     
     this.thumbnails_count++
-    console.log( 'count: ' + this.thumbnails_count )
   }
 	
 	
+}
+
+
+
+// draws images thumbnails based on model data
+gallery.prototype._draw_thumbnails = function() {
+  
+  for( var i=0; i<this.thumbnails_count; i++) {
+    var src_thumbnail = this._images_data[i].img.thumbnail
+    console.log( src_thumbnail )
+    $( 'gllr_thumbnail_'+i ).attr( 'src', src_thumbnail )
+  }
+  
 }
 
 
@@ -59,40 +72,41 @@ gallery.prototype.add_thumbnail_slots = function( element_id ) {
 // data
 
 
-// var to store the json data.
-// The json data describes the images that 
+
+
+// It is a json with data describing the images that 
 // will be displayed in the gallery.
-// Contains names, urls, sizes
-gallery.prototype._json
+// Contains urls, pixel sizes, captions
+gallery.prototype._images_data
+
+
+// Index for the currently "spotlight" image.
+// It is the currently selected image, displayed
+// in large size
+gallery.prototype._spotlight_img_index = 0
 
 
 
+// load a json object with data describing the images
+// to show in the gallery component
 gallery.prototype.get_json = function( url ) {
-
-  $.getJSON( url, this._handle_json )
+  
+  var that = this
+  
+  $.getJSON( 
+    url, 
+    function( json ) { that._handle_json.call( that, json ) } 
+  )
 
 }
-
-
 
 // callback function to handle ajax loaded json data
-// sets url for image thumbnails
-gallery.prototype._handle_json = function( data ) {
+gallery.prototype._handle_json = function( json ) {
 
-
-  this._json = data
-  console.dir( this._json )
-  
-  console.log( 'count: ' + this.thumbnails_count )
-  
-  for( var i=0; i<this.thumbnails_count; i++) {
-    var src = this._json.data.records[i].img
-    console.log(src)
-    $( 'gllr_thumbnail_'+i ).attribute( 'src', src )
-  }
-  
-
-  
+  this._images_data = json.data.records
+  this._draw_thumbnails()
+   
 }
+
 
 
