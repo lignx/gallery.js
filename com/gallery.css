@@ -1,3 +1,64 @@
+/* 
+
+Color styles.
+The color styles are provided separated, for easier configuring.
+
+*/
+
+.gllr_caption_box{
+  font: Verdana 16px;
+  color: #121212;
+}
+
+.gllr_nav_box{
+	background: #dedede;
+}
+
+.gllr_spotlight_image{ 
+	background: #dedede;
+}
+
+.gllr_caption_box { 
+	background: #dedede;
+}
+
+.gllr_nav_prev{
+	background: #aaa;
+}
+
+.gllr_nav_next{
+	background: #aaa;
+}
+
+.right_css_shape {
+  border-left: 32px solid #555;
+}
+
+.left_css_shape {
+  border-right: 32px solid #555;
+}
+
+.gllr_thumbnails_box{
+	background: #dedede;
+}
+
+.gllr_thumbnail {
+	background: #ccc;
+}
+
+.highlight_thumbnail {
+  background: #09CFFF;
+}
+
+
+/* 
+=============================================================
+
+Other styles.
+
+*/
+
+
 
 .gllr_nav_box{ 
 	position: absolute;
@@ -5,17 +66,25 @@
 	left: 10px;
 	right: 10px;
 	height: 114px;
-	background: #dedede;
   overflow: hidden;
 }
+
 
 .gllr_spotlight_image{ 
 	position: absolute;
 	top: 134px;
 	left: 10px;
 	right: 10px;
+	bottom: 40px;
+
+}
+
+.gllr_caption_box { 
+	position: absolute;
+	height: 20px;
+	left: 10px;
+	right: 10px;
 	bottom: 10px;
-	background: #dedede;
 }
 
 .gllr_nav_prev{
@@ -24,7 +93,6 @@
 	top: 0px;
 	width: 40px; 
 	height: 114px;
-	background: #aaa;
 }
 
 .gllr_nav_next{
@@ -33,7 +101,26 @@
 	top: 0px;
 	width: 40px; 
 	height: 114px;
-	background: #aaa;
+}
+
+.left_css_shape {
+  position: absolute;
+  top: 40px;
+  left: 2px;
+  width: 0;
+  height: 0;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+}
+
+.right_css_shape {
+  position: absolute;
+  top: 40px;
+  right: 2px;
+  width: 0;
+  height: 0;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
 }
 
 .gllr_thumbnails_box{
@@ -42,7 +129,6 @@
 	right: 50px;
 	left: 50px; 
 	height: 114px;
-	background: #dedede;
 }
 
 .gllr_thumbnail {
@@ -51,7 +137,6 @@
 	height: 110px;
 	margin: 0px 5px;
   padding: 2px;
-	background: #ccc;
 }
 
 .gllr_spotlight_img {
@@ -61,7 +146,5 @@
   max-width: 100%;
 }
 
-.highlight_thumbnail {
-  background: #09CFFF;
-}
+
 
