@@ -19,16 +19,16 @@ MIT license.
 
 Create an instance on an existing html <div> with:
 
-  gall_1 = new gallery( 'id_of_an_existing_html_element' )
+    gall_1 = new gallery( 'id_of_an_existing_html_element' )
 
 Add images from json data:
 
-  gall_1.add_images_from_json( 'data/feed.json' )
+    gall_1.add_images_from_json( 'data/feed.json' )
 
 That's all. The gallery component should be showing the images.
 More images can be added to the gallery:
 
-  gall_1.add_images_from_json( 'data/other_feed.json' )
+    gall_1.add_images_from_json( 'data/other_feed.json' )
 
 
 ## Docs
