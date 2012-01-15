@@ -3,7 +3,7 @@ var gallery = function( element_id ) {
 
   this.element_id = element_id
   this._draw_view()
-  this.add_thumbnail_slots();
+  
 }
 
 
@@ -29,8 +29,18 @@ gallery.prototype.element_id
 gallery.prototype.thumbnails_count = 0
 
 
-
+// draws the html view
 gallery.prototype._draw_view = function() {
+  
+  this._put_html()
+  this._add_nav_click()
+  this.add_thumbnail_slots();
+    
+}
+
+
+
+gallery.prototype._put_html = function() {
   
   var html = ''  
     + '<div class="gllr_nav_box">'
@@ -44,6 +54,22 @@ gallery.prototype._draw_view = function() {
   
   $( '#' + this.element_id ).html( html )
 
+}
+
+
+// add next image button event
+gallery.prototype._add_nav_click = function() {
+  
+  var that = this
+  
+  $( '#' + this.element_id + ' .gllr_nav_next' ).click(
+    function() { that.next.call( that ) }
+  )
+
+  $( '#' + this.element_id + ' .gllr_nav_prev' ).click(
+    function() { that.prev.call( that ) }
+  )
+  
 }
 
 
@@ -116,8 +142,10 @@ gallery.prototype._show_spotlight_img = function( image_index ) {
 // draws images thumbnails based on model data
 gallery.prototype._draw_thumbnails = function() {
   
-  for( var i=0; i<this.thumbnails_count; i++) {
-    
+  var thumbnails_to_draw = Math.min( this.thumbnails_count, this._images_data.length )
+  
+  for( var i=0; i<thumbnails_to_draw; i++) {
+        
     var src_thumbnail = this._images_data[i].img.thumbnail
     
     // build the selector for the html id of the image element
@@ -134,8 +162,8 @@ gallery.prototype._draw_thumbnails = function() {
 
 
 gallery.prototype.next = function() {
-  
-  if( this._spotlight_img_index == this._images_data.length ) return 
+    
+  if( this._spotlight_img_index + 1 == this._images_data.length ) return 
   
   this._spotlight_img_index++
   this._show_spotlight_img()  
@@ -161,7 +189,7 @@ gallery.prototype.prev = function() {
 // It is a json with data describing the images that 
 // will be displayed in the gallery.
 // Contains urls, pixel sizes, captions
-gallery.prototype._images_data
+gallery.prototype._images_data = []
 
 
 
@@ -195,8 +223,9 @@ gallery.prototype.add_images_from_json = function( url ) {
 
 // callback function to handle ajax loaded json data
 gallery.prototype._handle_json = function( json ) {
-
-  this._images_data = json.data.records
+  
+  //this._images_data = this._images_data.concat( json.data.records )
+  this._images_data = this._images_data.concat( json.data.records )
   this._draw_thumbnails()
     
 }
