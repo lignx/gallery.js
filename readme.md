@@ -4,7 +4,7 @@
 A simple javascript image gallery component.
 MIT license.
 
-[View online example](http://nzonbi.github.com/gallery.js/)
+[View online example](http://lignx.github.com/gallery.js/)
 
 ## Features
 
